@@ -9,7 +9,7 @@ router.get("/books", verifyToken, verifyRole(["Admin", "User"]), bookController.
 
 router.get("/books/:bookId", bookController.bookById);
 
-router.post("/books", bookController.createBook);
+router.post("/books", verifyToken, bookController.createBook);
 router.put("/books/:bookId", bookController.updateBook);
 router.delete("/books/:bookId", bookController.deleteBook);
 

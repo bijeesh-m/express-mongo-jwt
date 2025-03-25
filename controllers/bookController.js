@@ -2,9 +2,9 @@ const Book = require("../models/bookModel");
 
 module.exports.getAllBooks = async (req, res) => {
     try {
-        const books = await Book.find();
+        const books = await Book.find().populate("postedBy","username")  
         res.status(200).json({ message: "Books fetched successfully!", books });
-    } catch (error) {
+    } catch (error) {   
         console.log(error);
         res.status(500).json({ message: "Books fetched failed!", error: error.message });
     }
@@ -26,10 +26,11 @@ module.exports.bookById = async (req, res) => {
 
 module.exports.createBook = async (req, res) => {
     try {
+        console.log(req.user);
         const bookDetails = req.body;
         // const book = await Book.create(bookDetails);
         const newBook = new Book(bookDetails);
-        newBook.author = "asldkjflkjasdlf";
+        newBook.postedBy = req.user.id;
         await newBook.save();
         res.status(200).json({ message: "Book created successfully!", newBook });
     } catch (error) {

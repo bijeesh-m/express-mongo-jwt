@@ -21,7 +21,6 @@ module.exports.verifyRole = (roles) => {
         if (roles.includes(req.user.role)) {
             return next();
         }
-
         res.status(401).json({ message: "Access denied!" });
     };
 };
