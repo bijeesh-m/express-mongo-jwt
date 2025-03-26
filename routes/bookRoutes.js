@@ -9,6 +9,8 @@ router.get("/books", bookController.getAllBooks);
 
 router.get("/books/:bookId", bookController.bookById);
 
+// create a new book
+
 router.post("/books", verifyToken, bookController.createBook);
 router.put("/books/:bookId", bookController.updateBook);
 router.delete("/books/:bookId", bookController.deleteBook);
