@@ -3,7 +3,7 @@ const router = express.Router();
 const bookController = require("../controllers/bookController");
 const { verifyToken, verifyRole } = require("../middlewares/authMiddleware");
 
-router.get("/books", verifyToken, verifyRole(["Admin", "User"]), bookController.getAllBooks);
+router.get("/books", bookController.getAllBooks);
 
 //Get book by its ID
 
