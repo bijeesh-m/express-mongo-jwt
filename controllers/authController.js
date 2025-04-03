@@ -20,6 +20,7 @@ module.exports.register = async (req, res) => {
 
 module.exports.login = async (req, res) => {
     try {
+        console.log(req.body);
         const { email, password } = req.body;
         const user = await User.findOne({ email: email });
 
@@ -38,6 +39,7 @@ module.exports.login = async (req, res) => {
         }
         res.status(401).json({ message: "Invalid password" });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Regstration failed!", error: error.message });
     }
 };

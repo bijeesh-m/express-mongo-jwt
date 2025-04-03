@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "User",
     },
+    avatar: [String],
 });
 
 userSchema.pre("save", async function (next) {
